@@ -1,5 +1,7 @@
 {
   "name": "ETH",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

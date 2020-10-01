@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="styled1">New Entry</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="10" offset="1" size-md="6" offset-md="3">
+          <ion-item>
+            <ion-label position="floating">Full Name</ion-label>
+            <ion-input type="text" formControlName="name"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="10" offset="1" size-md="6" offset-md="3">
+          <ion-item>
+            <ion-label position="floating">Driving Licence</ion-label>
+            <ion-input type="text" formControlName="licence"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="10" offset="1" size-md="6" offset-md="3">
+          <ion-item>
+            <ion-label position="floating">Car Number</ion-label>
+            <ion-input type="text" formControlName="carno"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="10" offset="1" size-md="3" offset-md="3">
+          <ion-item>
+            <ion-label position="floating"> Start Date</ion-label>
+            <ion-datetime formControlName="startdate"></ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col size="10" offset="1" size-md="3" offset-md="0">
+          <ion-item>
+            <ion-label position="floating">End Date</ion-label>
+            <ion-datetime formControlName="enddate"></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <app-image-picker
+          [showPreview]="form.get('image').value"
+          (imagePick)="onImagePicked($event)"></app-image-picker>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="10" offset="1" size-md="6" offset-md="3">
+          <ion-button type="button" expand="block" color="primary" (click)="submitForm()">Submit</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

@@ -1,3 +1,44 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu side="start" contentId="main">
+    <ion-content class="menu">
+      <ion-header>
+        <ion-img src="../../assets/image/logo1.jpg"></ion-img>
+      </ion-header>
+        <ion-list class="ion-no-padding">
+          <ion-menu-toggle>
+            <ion-item style="border-top: 1px solid #fff;" routerLink="/home" detail='false'>
+              <ion-icon name="home" slot="start"></ion-icon>
+              <ion-label>HOME</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle>
+            <ion-item routerLink="/about-us" detail='false'>
+              <ion-icon name="help" slot="start"></ion-icon>
+              <ion-label>ABOUT US</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle>
+            <ion-item routerLink="/terms-and-condition" detail='false'>
+              <ion-icon name="newspaper" slot="start"></ion-icon>
+              <ion-label>TERMS & CONDITION</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle>
+            <ion-item routerLink="/contact-us" detail='false'>
+              <ion-icon name="call" slot="start"></ion-icon>
+              <ion-label>CONTACT US</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+    </ion-content>
+    <ion-footer>
+      <ion-menu-toggle>
+        <ion-item  style="border-top: 1px solid #fff; border-bottom: 0px;" routerLink="/login" detail='false'>
+          <ion-icon name="log-out" slot="start"></ion-icon>
+          <ion-label>LOGOUT</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-footer>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>

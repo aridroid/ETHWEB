@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>User Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none">
+          <ion-thumbnail slot="start">
+            <ion-img [src]="[userData.image]"></ion-img>
+          </ion-thumbnail>
+          <ion-title>{{userData.name}}</ion-title>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none">
+          <ion-text><strong>Address: </strong>{{userData.address}}</ion-text>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none">
+          <ion-text><strong>CarNo: </strong>{{userData.carNo}}</ion-text>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-title lines="none" class="ion-text-center">License</ion-title>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-img [src]=[userData.drivingPhoto]></ion-img>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none">
+          <ion-text><strong>Rental Company Name: </strong>{{userData.companyName}}</ion-text>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none">
+          <ion-text><strong>Date of Booking: </strong>{{userData.dateOfBooking.toLocaleDateString()}}</ion-text>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-text><strong>Return Date: </strong>{{userData.dateOfReturn.toLocaleDateString()}}</ion-text>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

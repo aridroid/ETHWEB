@@ -1,0 +1,25 @@
+ion-content.menu {
+    --background: #399b24;
+}
+
+.header {
+    background-color: #399b24;
+    padding: 50px;
+}
+
+ion-menu ion-content * {
+    --background: #399b24;
+}
+
+ion-menu ion-footer * {
+    --background: #399b24;
+}
+
+ion-menu-toggle ion-item * {
+    color: #fff;
+}
+
+ion-menu-toggle ion-item {
+    border-bottom: 1px solid #fff;
+}
+
