@@ -5,6 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { ScreensizeService } from './services/screensize.service';
 import { Location } from '@angular/common';
+import { CarServiveService } from './carService/car-servive.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +21,8 @@ export class AppComponent {
     private screenSizeService: ScreensizeService,
     private alertController: AlertController,
     private _location: Location,
+    private carService: CarServiveService,
+    private router: Router
   ) {
     this.initializeApp();
   }
@@ -83,6 +87,11 @@ export class AppComponent {
       .then(alert => {
         alert.present();
       });
+  }
+
+  logout() {
+    this.carService.clearLoginData();
+    this.router.navigateByUrl('/login');
   }
 
   @HostListener('window:resize', ['$event'])

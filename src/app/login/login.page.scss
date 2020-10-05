@@ -38,10 +38,19 @@ ion-grid.center {
 
 #container {
     text-align: center;
-  
     position: absolute;
     left: 0;
     right: 0;
     top: 50%;
     transform: translateY(-50%);
+}
+
+// @media(min-width: 992px) {
+//     ion-card.roundedCard {
+//         padding: 100px 0px;
+//     }
+// }
+.image {
+    max-width: 600px;
+    margin: auto;
 }

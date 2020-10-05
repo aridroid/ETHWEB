@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { LoadingController, Platform } from '@ionic/angular';
+import { Subscription } from 'rxjs';
 import { CarServiveService } from '../carService/car-servive.service';
 import { ScreensizeService } from '../services/screensize.service';
 import { CarData } from '../shared/car-data';
@@ -13,12 +14,14 @@ import { CarData } from '../shared/car-data';
 })
 export class HomePage implements OnInit{
 
+  subscription: Subscription;
   isDesktop: boolean;
   arr: CarData[];
   page = 0;
   isLoading = true;
   isSearching = false;
   searchArray: CarData[];
+  imageUrl = 'http://localhost/ETH/';
 
   constructor(private platform: Platform,
               private screenSizeService: ScreensizeService,
@@ -36,46 +39,10 @@ export class HomePage implements OnInit{
   }
 
   loadUsers(event?) {
-
-    //needed when api call will be done
-
-    // this.http.get(`https://randomuser.me/api/?results=50&page=${this.page}`)
-    // .subscribe(res => {
-    //   this.loadingCtrl.create({
-    //     message: 'Loading...'
-    //   }).then(loadingEl => {
-    //     loadingEl.present();
-    //     this.arr = this.arr.concat(res['results']);
-    //     // console.log(this.arr);
-    //     loadingEl.dismiss();
-    //   });
-    //   if (event) {
-    //     event.target.complete();
-    //   }
-    //   else {
-    //     this.isLoading = false;
-    //   }
-    // });
-
-    this.carService.getAllData()
-    .subscribe(res => {
-        this.loadingCtrl.create({
-        message: 'Loading...'
-      }).then(loadingEl => {
-        loadingEl.present();
-        this.arr = res;
-        console.log(this.arr);
-        // console.log(this.arr[0].name);
-        loadingEl.dismiss();
-        this.isLoading = false;
-      });
+    this.carService.getAllData().subscribe(resData => {
+      this.arr = resData
+      this.isLoading = false;
     });
-    }
-
-  loadMore(event) {
-    console.log(event);
-    this.page++;
-    this.loadUsers(event);
   }
 
   searchUser(event) {
@@ -83,7 +50,7 @@ export class HomePage implements OnInit{
       this.isSearching = true;
       this.searchArray = this.arr.filter(user => {
         let str = user.name.toLowerCase();
-        if(str.includes(event.value.toLowerCase())) {
+        if (str.includes(event.value.toLowerCase())) {
           return user;
         }
       });
@@ -94,5 +61,31 @@ export class HomePage implements OnInit{
     console.log('User input: ' + event.value);
     console.log(this.searchArray);
   }
-
 }
+
+//needed when api call will be done
+
+// this.http.get(`https://randomuser.me/api/?results=50&page=${this.page}`)
+// .subscribe(res => {
+//   this.loadingCtrl.create({
+//     message: 'Loading...'
+//   }).then(loadingEl => {
+//     loadingEl.present();
+//     this.arr = this.arr.concat(res['results']);
+//     // console.log(this.arr);
+//     loadingEl.dismiss();
+//   });
+//   if (event) {
+//     event.target.complete();
+//   }
+//   else {
+//     this.isLoading = false;
+//   }
+// });
+
+// loadMore(event) {
+  //   console.log(event);
+  //   this.page++;
+  //   this.loadUsers(event);
+  // }
+

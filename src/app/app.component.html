@@ -33,7 +33,7 @@
     </ion-content>
     <ion-footer>
       <ion-menu-toggle>
-        <ion-item  style="border-top: 1px solid #fff; border-bottom: 0px;" routerLink="/login" detail='false'>
+        <ion-item  style="border-top: 1px solid #fff; border-bottom: 0px;" (click)="logout()" detail='false'>
           <ion-icon name="log-out" slot="start"></ion-icon>
           <ion-label>LOGOUT</ion-label>
         </ion-item>

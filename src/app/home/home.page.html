@@ -21,18 +21,21 @@
     <ion-list *ngIf="!isSearching">
       <ion-item *ngFor="let user of arr" [routerLink]="[user?.id]">
         <ion-thumbnail slot="start">
-          <ion-img [src]="user?.image"></ion-img>
+          <ion-img [src]="imageUrl+user?.drivingPhoto"></ion-img>
         </ion-thumbnail>
         <ion-label>
           <h3 class="ion-text-capitalize">{{user?.name}}</h3>
           <p>{{user?.carNo}}</p>
         </ion-label>
       </ion-item>
+      <ion-item *ngIf="!arr.length">
+        <ion-title class="ion-text-center">No User Found</ion-title>
+      </ion-item>
     </ion-list>
     <ion-list *ngIf="isSearching">
       <ion-item *ngFor="let user of searchArray" [routerLink]="[user?.id]">
           <ion-thumbnail slot="start">
-            <ion-img [src]="user?.image"></ion-img>
+            <ion-img [src]="imageUrl+user?.drivingPhoto"></ion-img>
           </ion-thumbnail>
           <ion-label>
             <p>Hello this is {{user?.companyName | uppercase}}</p>

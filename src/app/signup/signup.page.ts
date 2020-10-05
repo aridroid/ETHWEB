@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AlertController, LoadingController } from '@ionic/angular';
+import { CarServiveService } from '../carService/car-servive.service';
 
 @Component({
   selector: 'app-signup',
@@ -7,9 +11,66 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupPage implements OnInit {
 
-  constructor() { }
+  form: FormGroup;
+
+  constructor(private carService: CarServiveService,
+              private loadingCtrl: LoadingController,
+              private alertCtrl: AlertController,
+              private router: Router) { }
 
   ngOnInit() {
+    this.form = new FormGroup({
+      companyName: new FormControl(null, {
+        updateOn: 'change',
+        validators: [Validators.required]
+      }),
+      address: new FormControl(null, {
+        updateOn: 'change',
+        validators: [Validators.required]
+      }),
+      email: new FormControl(null, {
+        updateOn: 'change',
+        validators: [
+          Validators.required,
+          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
+        ]
+      })
+    });
+  }
+
+  onSubmit() {
+    this.loadingCtrl.create({
+      message: 'Registering Process may take a while'
+    }).then(loadinEl => {
+      loadinEl.present();
+      this.carService.signup(this.form.value).subscribe((resData: any) => {
+        console.log(resData);
+        if (resData.status === 'success') {
+          this.form.reset();
+          loadinEl.dismiss();
+          this.carService.setLoginData(resData.userid, resData.company_name);
+          this.router.navigateByUrl('/dashboard');
+        }
+        else {
+          loadinEl.dismiss();
+          this.form.reset();
+          this.alertCtrl.create({
+            header: 'Registration Failed',
+            message: resData.massage,
+            buttons: ['Okay']
+          }).then(alertEl => alertEl.present());
+        }
+      }, err => {
+        loadinEl.dismiss();
+        this.form.reset();
+        this.alertCtrl.create({
+          header: 'Connection Failed',
+          message: 'Failed to establish connection with the server',
+          buttons: ['Okay']
+        }).then(alertEl => alertEl.present());
+        console.log(err);
+      });
+    });
   }
 
 }

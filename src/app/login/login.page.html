@@ -5,46 +5,46 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true" class="background">
   <ion-grid id="container">
     <ion-row class="image-margin">
       <ion-col size="6" offset="3">
-        <ion-img src="../../assets/image/logo2.jpg"></ion-img>
+        <ion-img src="../../assets/image/logo2.jpg" class="image"></ion-img>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col size="12" offset="0" size-lg="8" offset-lg="2">
-        <ion-card class="roundedCard">
-          <ion-row>
-            <ion-col size="10" offset="1">
-              <ion-item class="margin-bottom">
-                <ion-label><ion-icon name="person-outline" slot="icon-only"></ion-icon></ion-label>
-                <ion-input type="text" placeholder="Username"></ion-input>
-              </ion-item>
-              <ion-item  class="margin-bottom">
-                <ion-label><ion-icon name="lock-closed-outline" slot="icon-only"></ion-icon></ion-label>
-                <ion-input type="password" placeholder="Password"></ion-input>
-              </ion-item>
-              <div class="ion-text-end">
-                <p class="ion-no-margin ion-no-padding" (click)="openModal()">Forgot Password?</p>
-              </div>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="10" offset="1" size-md="4" offset-md="1">
-              <ion-button type="button" color="success" expand="block" shape="round" routerLink="/dashboard">Login</ion-button>
-            </ion-col>
-            <ion-col size="10" offset="1" size-md="4" offset-md="2">
-              <ion-button type="button" expand="block" color="success" shape="round" routerLink="/signup">Don't have Account</ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-card>
-      </ion-col>
-    </ion-row>
+    <form [formGroup]="form" (submit)="onSubmit()">
+      <ion-row>
+        <ion-col size="12" offset="0" size-lg="8" offset-lg="2">
+          <ion-card class="roundedCard">
+            <ion-row>
+              <ion-col size="10" offset="1">
+                <ion-item class="margin-bottom">
+                  <ion-label><ion-icon name="person-outline" slot="icon-only"></ion-icon></ion-label>
+                  <ion-input type="text" placeholder="Username" formControlName="username"></ion-input>
+                </ion-item>
+                <ion-item  class="margin-bottom">
+                  <ion-label><ion-icon name="lock-closed-outline" slot="icon-only"></ion-icon></ion-label>
+                  <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+                </ion-item>
+                <div class="ion-text-end">
+                  <p class="ion-no-margin ion-no-padding" (click)="openModal()" style="cursor: pointer;">Forgot Password?</p>
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="10" offset="1" size-md="5"  offset-md="1">
+                <ion-button type="submit" color="success" expand="block" shape="round" [disabled]="!form.valid">Login</ion-button>
+              </ion-col>
+              <ion-col size="10" offset="1" size-md="5" offset-md="0">
+                <ion-button type="button" expand="block" color="success" shape="round" routerLink="/signup">Don't have Account</ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </form>
     <ion-row style="margin-top: 30px;">
       <ion-col size="2">
-
       </ion-col>
       <ion-col size="3" class="ion-text-center">
         <ion-icon name="logo-google" class="icon-yellow"></ion-icon>
@@ -55,10 +55,7 @@
       <ion-col size="3" class="ion-text-center">
         <ion-icon name="logo-twitter" class="icon-yellow"></ion-icon>
       </ion-col>
-      <ion-col size="2">
-
-      </ion-col>
+      <ion-col size="2"></ion-col>
     </ion-row>
   </ion-grid>
-  
 </ion-content>
