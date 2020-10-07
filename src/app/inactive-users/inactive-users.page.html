@@ -19,12 +19,12 @@
   <ion-searchbar inputmode="text" animated="true" #user (ionChange)="searchUser(user)"></ion-searchbar>
   <ion-card class="roundedCard">
     <ion-list *ngIf="!isSearching">
-      <ion-item *ngFor="let user of arr" [routerLink]="[user?.id]">
+      <ion-item *ngFor="let user of arr" routerLink="/home/{{user?.id}}">
         <ion-thumbnail slot="start">
           <ion-img [src]="imageUrl+user?.drivingPhoto"></ion-img>
         </ion-thumbnail>
         <ion-label>
-          <h3 class="ion-text-capitalize">{{user?.name}}</h3> 
+          <h3 class="ion-text-capitalize">{{user?.name}}</h3>
           <p>{{user?.carNo}}</p>
         </ion-label>
       </ion-item>

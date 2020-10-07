@@ -10,7 +10,7 @@
 		die("Connection failed: " . $conn->connect_error);
 	}
     $response = array();
-    $query="Select * from user_table";
+    $query="Select * from user_table where status='active'";
     if($result=mysqli_query($conn,$query)){
         while($row = mysqli_fetch_assoc($result)){
             $response[]= array('id'=> $row['id'],'name'=> $row['full_name'], 'drivingLicense'=> $row['driving_license'],

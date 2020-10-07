@@ -8,11 +8,12 @@ import { CarData } from '../shared/car-data';
 
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-inactive-users',
+  templateUrl: './inactive-users.page.html',
+  styleUrls: ['./inactive-users.page.scss'],
 })
-export class HomePage implements OnInit{
+
+export class InactiveUsersPage implements OnInit{
 
   subscription: Subscription;
   isDesktop: boolean;
@@ -46,7 +47,7 @@ export class HomePage implements OnInit{
       message: 'Loading...'
     }).then(loadingEl => {
       loadingEl.present();
-      this.carService.getAllActiveData().subscribe(resData => {
+      this.carService.getAllInactiveData().subscribe(resData => {
         this.arr = resData
         this.isLoading = false;
         loadingEl.dismiss();
@@ -71,30 +72,3 @@ export class HomePage implements OnInit{
     console.log(this.searchArray);
   }
 }
-
-//needed when api call will be done
-
-// this.http.get(`https://randomuser.me/api/?results=50&page=${this.page}`)
-// .subscribe(res => {
-//   this.loadingCtrl.create({
-//     message: 'Loading...'
-//   }).then(loadingEl => {
-//     loadingEl.present();
-//     this.arr = this.arr.concat(res['results']);
-//     // console.log(this.arr);
-//     loadingEl.dismiss();
-//   });
-//   if (event) {
-//     event.target.complete();
-//   }
-//   else {
-//     this.isLoading = false;
-//   }
-// });
-
-// loadMore(event) {
-  //   console.log(event);
-  //   this.page++;
-  //   this.loadUsers(event);
-  // }
-

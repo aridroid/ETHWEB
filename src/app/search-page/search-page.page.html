@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <diV>
+      <ion-img src="../../assets/image/logo2.jpg"></ion-img>
+    </diV>
+    <!-- <ion-title class="styled1">
+      ETH
+    </ion-title> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="background">
+  <ion-card class="roundedCard">
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col>
+          <ion-searchbar placeholder="Search by username" #user (ionChange)="onChange(user.value)"></ion-searchbar>
+          <ion-button expand="block" color="success" [disabled]="!user.value" (click)="searchUser(user.value)">Search</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <app-search-result [carData]="searchArray"></app-search-result>
+  </ion-card>
+</ion-content>

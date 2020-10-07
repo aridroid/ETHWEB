@@ -8,6 +8,7 @@ export class CarData {
         public companyId: string,
         public companyName: string,
         public dateOfBooking: Date,
-        public dateOfReturn: Date) { 
+        public dateOfReturn: Date,
+        public status: string) {
     }
 }

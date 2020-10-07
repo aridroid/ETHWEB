@@ -28,7 +28,7 @@
         $image = base64_decode($image);
         file_put_contents($target_path,$image);
         $target_path = 'uploaded-files/'.$time.'.jpg';
-        $query="Insert into user_table values('NULL','$name','$license','$car_no','$startdate','$enddate','$target_path','$company_id','$company_name')";
+        $query="Insert into user_table values('NULL','$name','$license','$car_no','$startdate','$enddate','$target_path','$company_id','$company_name','active')";
         if(mysqli_query($conn,$query)){
             $response['status']='success';
             $response['massage']='User Added Successfully';

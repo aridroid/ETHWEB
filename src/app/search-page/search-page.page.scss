@@ -1,0 +1,54 @@
+.styled2 {
+    font-size: small;
+    font-weight: lighter;
+    color: #ffffff;
+  }
+  
+  .secondContainer {
+    padding: 10px;
+    border: 1px solid black;
+  }
+  
+  .padding {
+    padding: 30px;
+  }
+  
+  .padding2 {
+    padding: 40px;
+  }
+  
+  .position {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+  }
+  
+  ion-card.roundedCard {
+    --ion-background-color: #fff;
+    border-radius: 40px;
+    height: 90%;
+    overflow: auto;
+    margin: 20px;
+  }
+  
+  ion-content.background {
+    --background: url('../../assets/image/background.jpg') 0 0/100% 100% no-repeat;
+  }
+  
+  div ion-img {
+    width: 120px;
+    margin: auto;
+  }
+  
+ .searchbar-button {
+    padding: 10px;
+  }
+
+  #container {
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}

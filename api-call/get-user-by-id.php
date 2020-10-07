@@ -8,15 +8,21 @@
 	$conn= mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
-	}
+    }
     $response = array();
-    $query="Select * from user_table";
-    if($result=mysqli_query($conn,$query)){
-        while($row = mysqli_fetch_assoc($result)){
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        $query="Select * from user_table where id=$id";
+        if($result=mysqli_query($conn,$query)){
+            $row = mysqli_fetch_assoc($result);
             $response[]= array('id'=> $row['id'],'name'=> $row['full_name'], 'drivingLicense'=> $row['driving_license'],
             'carNo'=> $row['car_no'], 'drivingPhoto'=> $row['id_proof'],'companyId'=> $row['company_id'], 
             'companyName' => $row['company_name'], 'dateOfBooking'=> $row['start_date'], 'dateOfReturn'=> $row['end_date'],'status' => $row['status']);
         }
+    }
+    else {
+        $response['status']='failed';
+        $response['message']='Parameters not specified';
     }
 	echo json_encode($response);
 ?>

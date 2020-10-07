@@ -39,6 +39,14 @@ const routes: Routes = [
     path: 'terms-and-condition',
     loadChildren: () => import('./local/terms-and-condition/terms-and-condition.module').then( m => m.TermsAndConditionPageModule)
   },
+  {
+    path: 'inactive-users',
+    loadChildren: () => import('./inactive-users/inactive-users.module').then( m => m.InactiveUsersPageModule)
+  },
+  {
+    path: 'search-page',
+    loadChildren: () => import('./search-page/search-page.module').then( m => m.SearchPagePageModule)
+  },
 ];
 
 @NgModule({

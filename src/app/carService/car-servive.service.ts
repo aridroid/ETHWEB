@@ -13,10 +13,14 @@ const { Storage } = Plugins;
 export class CarServiveService {
 
   carData: CarData[] = [];
+  searchData: CarData[] = [];
 
-  getAllData() {
-    return this.http.get<{ [key: string]: CarData }>('http://localhost/ETH/api-call/get-all-user.php').pipe(take(1),
+  getSearchData(name: string) {
+    let formData = new FormData();
+    formData.append('name', name);
+    return this.http.post<{ [key: string]: CarData }>('http://localhost/ETH/api-call/get-users-by-name.php', formData).pipe(take(1),
     switchMap(resData => {
+      this.carData = [];
       for (const key in resData){
         if (resData.hasOwnProperty(key)){
             this.carData.push(new CarData(
@@ -28,7 +32,77 @@ export class CarServiveService {
             resData[key].companyId,
             resData[key].companyName,
             resData[key].dateOfBooking,
-            resData[key].dateOfReturn));
+            resData[key].dateOfReturn,
+            resData[key].status));
+        }
+      }
+      return of(this.carData);
+    }));
+  }
+
+  getAllData() {
+    return this.http.get<{ [key: string]: CarData }>('http://localhost/ETH/api-call/get-all-user.php').pipe(take(1),
+    switchMap(resData => {
+      this.carData = [];
+      for (const key in resData){
+        if (resData.hasOwnProperty(key)){
+            this.carData.push(new CarData(
+            resData[key].id,
+            resData[key].name,
+            resData[key].drivingLicense,
+            resData[key].carNo,
+            resData[key].drivingPhoto,
+            resData[key].companyId,
+            resData[key].companyName,
+            resData[key].dateOfBooking,
+            resData[key].dateOfReturn,
+            resData[key].status));
+        }
+      }
+      return of(this.carData);
+    }));
+  }
+
+  getAllActiveData() {
+    return this.http.get<{ [key: string]: CarData }>('http://localhost/ETH/api-call/get-all-active-user.php').pipe(take(1),
+    switchMap(resData => {
+      this.carData = [];
+      for (const key in resData){
+        if (resData.hasOwnProperty(key)){
+            this.carData.push(new CarData(
+            resData[key].id,
+            resData[key].name,
+            resData[key].drivingLicense,
+            resData[key].carNo,
+            resData[key].drivingPhoto,
+            resData[key].companyId,
+            resData[key].companyName,
+            resData[key].dateOfBooking,
+            resData[key].dateOfReturn,
+            resData[key].status));
+        }
+      }
+      return of(this.carData);
+    }));
+  }
+
+  getAllInactiveData() {
+    return this.http.get<{ [key: string]: CarData }>('http://localhost/ETH/api-call/get-all-inactive-user.php').pipe(take(1),
+    switchMap(resData => {
+      this.carData = [];
+      for (const key in resData){
+        if (resData.hasOwnProperty(key)){
+            this.carData.push(new CarData(
+            resData[key].id,
+            resData[key].name,
+            resData[key].drivingLicense,
+            resData[key].carNo,
+            resData[key].drivingPhoto,
+            resData[key].companyId,
+            resData[key].companyName,
+            resData[key].dateOfBooking,
+            resData[key].dateOfReturn,
+            resData[key].status));
         }
       }
       return of(this.carData);
@@ -36,7 +110,7 @@ export class CarServiveService {
   }
 
   getUser(id: string) {
-    return of<CarData> (...this.carData.filter(car => car.id === id)).pipe(take(1));
+    return this.http.get<{ [key: string]: CarData }>(`http://localhost/ETH/api-call/get-user-by-id.php?id=${id}`).pipe(take(1));
   }
 
   signup(formValue: any) {
@@ -93,6 +167,12 @@ export class CarServiveService {
       return this.http.post('http://localhost/ETH/api-call/upload-user-details.php', userDetails)
       .pipe(take(1));
     }));
+  }
+
+  uploadStatus(id: string) {
+    let formData = new FormData();
+    formData.append('id', id);
+    return this.http.post(`http://localhost/ETH/api-call/update-status.php`, formData).pipe(take(1));
   }
 
   constructor(private http: HttpClient) { }
