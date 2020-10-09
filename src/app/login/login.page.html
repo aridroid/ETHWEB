@@ -1,11 +1,11 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" *ngIf="isBackButton">
   <ion-toolbar color="dark">
     <ion-title class="styled1">
       ETH
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content [fullscreen]="true" class="background">
+<ion-content [fullscreen]="true" class="background" *ngIf="isBackButton">
   <ion-grid>
     <ion-row class="image-margin-padding">
       <ion-col size="6" offset="3">

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { CarServiveService } from 'src/app/carService/car-servive.service';
 import { CarData } from 'src/app/shared/car-data';
@@ -15,11 +15,13 @@ export class UserDetailPage implements OnInit {
   userData: CarData;
   imageUrl = 'http://eqsxerusrangoon.com/';
   companyId = null;
+  isLoading = true;
 
   constructor(private activatedRoute: ActivatedRoute,
               private carService: CarServiveService,
               private alertCtrl: AlertController,
-              private loadingCtrl: LoadingController) { }
+              private loadingCtrl: LoadingController,
+              private router: Router) { }
 
   ngOnInit() {
     this.fetchData();
@@ -34,6 +36,7 @@ export class UserDetailPage implements OnInit {
         if (paramMap.has('id')){
           this.id = paramMap.get('id');
           this.carService.getUser(this.id).subscribe(resData => {
+            console.log(resData);
             for (const key in resData){
               if (resData.hasOwnProperty(key)){
                 this.userData = new CarData(
@@ -53,11 +56,28 @@ export class UserDetailPage implements OnInit {
             this.carService.getLoginData().then((storedData: any) => {
               this.companyId = storedData.companyId;
             });
+            loadingEl.dismiss();
+            this.isLoading = false;
+          }, err => {
+            loadingEl.dismiss();
+            this.showErrorAlert();
           });
         }
       });
-      loadingEl.dismiss();
     });
+  }
+
+  showErrorAlert() {
+    this.alertCtrl.create({
+      header: 'Connection Problem',
+      message: 'Internet connection problem',
+      buttons: [{
+        text: 'Reload',
+        handler: () => {
+          this.fetchData();
+        }
+      }]
+    }).then(alertEl => alertEl.present());
   }
 
   updateStatus() {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
+import { from } from 'rxjs';
 import { CarServiveService } from '../carService/car-servive.service';
 
 @Component({
@@ -12,6 +13,7 @@ import { CarServiveService } from '../carService/car-servive.service';
 export class SignupPage implements OnInit {
 
   form: FormGroup;
+  isBackButton: boolean;
 
   constructor(private carService: CarServiveService,
               private loadingCtrl: LoadingController,
@@ -35,6 +37,18 @@ export class SignupPage implements OnInit {
           Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
         ]
       })
+    });
+  }
+
+  ionViewWillEnter() {
+    this.isBackButton = false;
+    from(this.carService.getLoginData()).subscribe(loginData => {
+      if (!loginData) {
+        this.isBackButton = true;
+      }
+      else {
+        this.router.navigateByUrl('/dashboard');
+      }
     });
   }
 

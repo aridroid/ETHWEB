@@ -48,3 +48,10 @@
     top: 50%;
     transform: translateY(-50%);
 }
+
+@media(min-width: 992px) {
+  ion-card.roundedCard {
+      margin: 20px 100px;
+      padding: 0px 100px;
+  }
+}

@@ -26,7 +26,7 @@ export class NewEntryPage implements OnInit {
       }),
       license: new FormControl(null, {
         updateOn: 'change',
-        validators: [Validators.required, Validators.maxLength(180)] 
+        validators: [Validators.required, Validators.maxLength(180)]
       }),
       name: new FormControl(null, {
         updateOn: 'change',
@@ -51,7 +51,7 @@ export class NewEntryPage implements OnInit {
 
   submitForm() {
     this.loadingCtrl.create({
-      message: 'Uploading...'
+      message: 'Uploading may take some time'
     }).then(loadingEl => {
       loadingEl.present();
       this.carService.uploadUserDetails(this.form.value).subscribe((resData:any) => {

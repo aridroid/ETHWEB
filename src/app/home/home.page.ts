@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { LoadingController, Platform } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { AlertController, LoadingController, Platform } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { CarServiveService } from '../carService/car-servive.service';
 import { ScreensizeService } from '../services/screensize.service';
@@ -18,7 +19,7 @@ export class HomePage implements OnInit{
   isDesktop: boolean;
   arr: CarData[];
   page = 0;
-  isLoading = true;
+  isLoading = true; 
   isSearching = false;
   searchArray: CarData[];
   imageUrl = 'http://eqsxerusrangoon.com/';
@@ -27,7 +28,9 @@ export class HomePage implements OnInit{
               private screenSizeService: ScreensizeService,
               private http: HttpClient,
               private loadingCtrl: LoadingController,
-              private carService: CarServiveService) {
+              private carService: CarServiveService,
+              private alertCtrl: AlertController,
+              private router: Router) {
                 this.screenSizeService.isDesktopView().subscribe(isDesktop => {
                   console.log('Is Desktop Changed:', isDesktop);
                   this.isDesktop = isDesktop;
@@ -50,8 +53,24 @@ export class HomePage implements OnInit{
         this.arr = resData
         this.isLoading = false;
         loadingEl.dismiss();
+      }, err => {
+        loadingEl.dismiss();
+        this.showErrorAlert();
       });
     });
+  }
+
+  showErrorAlert() {
+    this.alertCtrl.create({
+      header: 'Connection Problem',
+      message: 'Internet connection problem',
+      buttons: [{
+        text: 'Reload',
+        handler: () => {
+          this.loadUsers();
+        }
+      }]
+    }).then(alertEl => alertEl.present());
   }
 
   searchUser(event) {

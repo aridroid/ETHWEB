@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController, ModalController } from '@ionic/angular';
+import { from } from 'rxjs';
 import { CarServiveService } from '../carService/car-servive.service';
 import { ForgetPasswordComponent } from '../local/forget-password/forget-password.component';
 
@@ -13,6 +14,7 @@ import { ForgetPasswordComponent } from '../local/forget-password/forget-passwor
 export class LoginPage implements OnInit {
 
   form: FormGroup;
+  isBackButton: boolean;
 
   constructor(private modalCtrl: ModalController,
               private carService: CarServiveService,
@@ -30,6 +32,18 @@ export class LoginPage implements OnInit {
         updateOn: 'change',
         validators: [Validators.required]
       })
+    });
+  }
+
+  ionViewWillEnter() {
+    this.isBackButton = false;
+    from(this.carService.getLoginData()).subscribe(loginData => {
+      if (!loginData) {
+        this.isBackButton = true;
+      }
+      else {
+        this.router.navigateByUrl('/dashboard');
+      }
     });
   }
 

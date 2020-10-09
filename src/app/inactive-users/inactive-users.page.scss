@@ -40,4 +40,9 @@
     margin: auto;
   }
   
-  
+  @media(min-width: 992px) {
+    ion-card.roundedCard {
+        margin: 20px 100px;
+        padding: 0px 100px;
+    }
+  }

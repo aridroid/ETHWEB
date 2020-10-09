@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { LoadingController, Platform } from '@ionic/angular';
+import { AlertController, LoadingController, Platform } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { CarServiveService } from '../carService/car-servive.service';
 import { ScreensizeService } from '../services/screensize.service';
@@ -28,7 +28,8 @@ export class InactiveUsersPage implements OnInit{
               private screenSizeService: ScreensizeService,
               private http: HttpClient,
               private loadingCtrl: LoadingController,
-              private carService: CarServiveService) {
+              private carService: CarServiveService,
+              private alertCtrl: AlertController) {
                 this.screenSizeService.isDesktopView().subscribe(isDesktop => {
                   console.log('Is Desktop Changed:', isDesktop);
                   this.isDesktop = isDesktop;
@@ -51,8 +52,24 @@ export class InactiveUsersPage implements OnInit{
         this.arr = resData
         this.isLoading = false;
         loadingEl.dismiss();
+      }, () => {
+        loadingEl.dismiss();
+        this.showErrorAlert();
       });
     });
+  }
+
+  showErrorAlert() {
+    this.alertCtrl.create({
+      header: 'Connection Problem',
+      message: 'Internet connection problem',
+      buttons: [{
+        text: 'Reload',
+        handler: () => {
+          this.loadUsers();
+        }
+      }]
+    }).then(alertEl => alertEl.present());
   }
 
   searchUser(event) {
