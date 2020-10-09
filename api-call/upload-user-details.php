@@ -21,21 +21,28 @@
         $startdate = $_POST['startdate'];
         $enddate = $_POST['enddate'];
         $image = $_POST['image'];
-        $image = str_replace('data:image/jpeg;base64,','',$image);
-        $image = str_replace('data:image/jpg;base64,','',$image);
-        $image = str_replace('data:image/png;base64,','',$image);
-        $image = str_replace(' ','+',$image);
-        $image = base64_decode($image);
-        file_put_contents($target_path,$image);
-        $target_path = 'uploaded-files/'.$time.'.jpg';
-        $query="Insert into user_table values('NULL','$name','$license','$car_no','$startdate','$enddate','$target_path','$company_id','$company_name','active')";
-        if(mysqli_query($conn,$query)){
-            $response['status']='success';
-            $response['massage']='User Added Successfully';
-        }
-        else {
+        $query = "Select * from user_table where driving_license='$license' and status='active'";
+        if(mysqli_num_rows(mysqli_query($conn, $query)) > 0){
             $response['status']="failed";
-		    $response['massage']="Query Failure, Please contact with the developer";
+		    $response['massage']="User already has an active rental";
+        }
+        else{
+            $image = str_replace('data:image/jpeg;base64,','',$image);
+            $image = str_replace('data:image/jpg;base64,','',$image);
+            $image = str_replace('data:image/png;base64,','',$image);
+            $image = str_replace(' ','+',$image);
+            $image = base64_decode($image);
+            file_put_contents($target_path,$image);
+            $target_path = 'uploaded-files/'.$time.'.jpg';
+            $query="Insert into user_table values('NULL','$name','$license','$car_no','$startdate','$enddate','$target_path','$company_id','$company_name','active')";
+            if(mysqli_query($conn,$query)){
+                $response['status']='success';
+                $response['massage']='User Added Successfully';
+            }
+            else {
+                $response['status']="failed";
+                $response['massage']="Query Failure, Please contact with the developer";
+            }
         }
 	}
 	else{

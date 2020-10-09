@@ -57,7 +57,7 @@ export class LoginPage implements OnInit {
           loadinEl.dismiss();
           this.router.navigateByUrl('/dashboard');
         }
-        else {
+        else { 
           loadinEl.dismiss();
           this.form.reset();
           this.alertCtrl.create({

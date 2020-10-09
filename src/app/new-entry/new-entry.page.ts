@@ -51,13 +51,14 @@ export class NewEntryPage implements OnInit {
 
   submitForm() {
     this.loadingCtrl.create({
-      message: 'Uploading Userdata...'
+      message: 'Uploading...'
     }).then(loadingEl => {
       loadingEl.present();
       this.carService.uploadUserDetails(this.form.value).subscribe((resData:any) => {
         if (resData.status === 'success') {
           loadingEl.dismiss();
           this.router.navigateByUrl('/dashboard');
+          this.form.reset();
         }
         else {
           loadingEl.dismiss();

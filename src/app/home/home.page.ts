@@ -21,7 +21,7 @@ export class HomePage implements OnInit{
   isLoading = true;
   isSearching = false;
   searchArray: CarData[];
-  imageUrl = 'http://localhost/ETH/';
+  imageUrl = 'http://eqsxerusrangoon.com/';
 
   constructor(private platform: Platform,
               private screenSizeService: ScreensizeService,

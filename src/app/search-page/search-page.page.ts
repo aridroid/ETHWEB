@@ -29,6 +29,10 @@ export class SearchPagePage implements OnInit {
   ngOnInit() {
   }
 
+  ionViewWillEnter() {
+    this.searchArray = [];
+  }
+
   onChange(event) {
     if (!event) {
       this.searchArray = [];

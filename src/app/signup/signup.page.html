@@ -7,10 +7,10 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="background">
-  <ion-grid id="container">
-    <ion-row class="image-margin">
+  <ion-grid>
+    <ion-row class="image-margin-padding">
       <ion-col size="6" offset="3">
-        <ion-img src="../../assets/image/logo2.jpg" class="image"></ion-img>
+        <ion-img src="../../assets/image/logo3.jpg" class="image"></ion-img>
       </ion-col>
     </ion-row>
     <form [formGroup]="form" (submit)="onSubmit()">
@@ -38,10 +38,10 @@
             </ion-row>
             <ion-row>
               <ion-col size="10" offset="1" size-md="5" offset-md="1">
-                <ion-button type="submit" color="success" expand="block" shape="round" [disabled]="!form.valid">SignUp</ion-button>
+                <ion-button type="submit" class="color1" expand="block" shape="round" [disabled]="!form.valid">SignUp</ion-button>
               </ion-col>
               <ion-col size="10" offset="1" size-md="5" offset-md="0">
-                <ion-button type="button" expand="block" color="success" shape="round" routerLink="/login">Already have Account</ion-button>
+                <ion-button type="button" expand="block" class="color1" shape="round" routerLink="/login">Already have Account</ion-button>
               </ion-col>
             </ion-row>
           </ion-card>

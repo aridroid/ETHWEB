@@ -1,12 +1,13 @@
 import { Component, HostListener } from '@angular/core';
 
 import { AlertController, Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { ScreensizeService } from './services/screensize.service';
 import { Location } from '@angular/common';
 import { CarServiveService } from './carService/car-servive.service';
 import { Router } from '@angular/router';
+import { Plugins } from '@capacitor/core';
+const { SplashScreen } = Plugins;
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,6 @@ import { Router } from '@angular/router';
 export class AppComponent {
   constructor(
     private platform: Platform,
-    private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private screenSizeService: ScreensizeService,
     private alertController: AlertController,
@@ -30,7 +30,7 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      SplashScreen.hide();
       this.screenSizeService.onResize(this.platform.width());
     });
 

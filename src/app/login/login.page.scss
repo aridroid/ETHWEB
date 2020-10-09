@@ -1,6 +1,7 @@
 ion-content.background {
     // --ion-background-color: #222428;
-    --background: url('../../assets/image/background.jpg') 0 0/100% 100% no-repeat;
+    // --background: url('../../assets/image/background.jpg') 0 0/100% 100% no-repeat;
+    --background: linear-gradient(to bottom right,#152636,#010409);
     // background-repeat: no-repeat;
     // background-position: center;
     // background-size: contain;
@@ -13,12 +14,9 @@ ion-card.roundedCard {
     border-radius: 40px;
 }
 
-ion-row.image-margin {
+ion-row.image-margin-padding {
     margin: 20px 0px;
-}
-
-ion-button.color1 {
-    --ion-background-color: #399b24;
+    padding-top: 50px;
 }
 
 ion-grid.center {

@@ -31,4 +31,15 @@
     color: #ffffff;
   }
 
-  
+ion-button.color1 {
+    --background: #f9b700;
+}
+
+.background {
+  // --ion-background-color: #222428;
+  // --background: url('../../assets/image/background.jpg') 0 0/100% 100% no-repeat;
+  --background: linear-gradient(to bottom right,#152636,#010409);
+  // background-repeat: no-repeat;
+  // background-position: center;
+  // background-size: contain;
+}

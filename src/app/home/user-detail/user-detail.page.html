@@ -36,7 +36,7 @@
           <ion-title class="ion-text-center"><strong>Id Proof</strong></ion-title>
         </ion-item>
         <ion-item lines="none">
-          <ion-img [src]=[imageUrl+userData?.drivingPhoto]></ion-img>
+          <ion-img [src]=[imageUrl+userData?.drivingPhoto] style="margin: 0 auto;"></ion-img>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -57,16 +57,18 @@
         </ion-item>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col col size="6" offset="3">
-        <ion-button type="button" 
-        color="{{userData?.status === 'active' ? 'danger' : 'success'}}" 
-        expand="block" shape="round" 
-        (click)="onClick()"
-        disabled="{{userData?.status === 'active' ? 'false' : 'true'}}"
-        >{{userData?.status === 'active' ? 'Renting' : 'Returned'}}
-      </ion-button>
-      </ion-col>
-    </ion-row>
+    <div *ngIf="companyId">
+      <ion-row>
+        <ion-col col size="6" offset="3">
+          <ion-button type="button" 
+          color="{{userData?.status === 'active' ? 'danger' : 'success'}}" 
+          expand="block" shape="round" 
+          (click)="onClick()"
+          [disabled]="((userData?.status === 'inactive') || companyId !== userData?.companyId)"
+          >{{userData?.status === 'active' ? 'Renting' : 'Returned'}}
+        </ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
   </ion-grid>
 </ion-content>

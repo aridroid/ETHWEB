@@ -13,7 +13,8 @@ export class UserDetailPage implements OnInit {
 
   id: string;
   userData: CarData;
-  imageUrl = 'http://localhost/ETH/';
+  imageUrl = 'http://eqsxerusrangoon.com/';
+  companyId = null;
 
   constructor(private activatedRoute: ActivatedRoute,
               private carService: CarServiveService,
@@ -25,29 +26,37 @@ export class UserDetailPage implements OnInit {
   }
 
   fetchData() {
-    this.activatedRoute.paramMap.subscribe(paramMap => {
-      if (paramMap.has('id')){
-        this.id = paramMap.get('id');
-        this.carService.getUser(this.id).subscribe(resData => {
-          console.log(resData[0]);
-          for (const key in resData){
-            if (resData.hasOwnProperty(key)){
-              this.userData = new CarData(
-                resData[key].id,
-                resData[key].name,
-                resData[key].drivingLicense,
-                resData[key].carNo,
-                resData[key].drivingPhoto,
-                resData[key].companyId,
-                resData[key].companyName,
-                resData[key].dateOfBooking,
-                resData[key].dateOfReturn,
-                resData[key].status
-              );
+    this.loadingCtrl.create({
+      message: 'Loading...'
+    }).then(loadingEl => {
+      loadingEl.present();
+      this.activatedRoute.paramMap.subscribe(paramMap => {
+        if (paramMap.has('id')){
+          this.id = paramMap.get('id');
+          this.carService.getUser(this.id).subscribe(resData => {
+            for (const key in resData){
+              if (resData.hasOwnProperty(key)){
+                this.userData = new CarData(
+                  resData[key].id,
+                  resData[key].name,
+                  resData[key].drivingLicense,
+                  resData[key].carNo,
+                  resData[key].drivingPhoto,
+                  resData[key].companyId,
+                  resData[key].companyName,
+                  resData[key].dateOfBooking,
+                  resData[key].dateOfReturn,
+                  resData[key].status
+                );
+              }
             }
-          }
-        });
-      }
+            this.carService.getLoginData().then((storedData: any) => {
+              this.companyId = storedData.companyId;
+            });
+          });
+        }
+      });
+      loadingEl.dismiss();
     });
   }
 

@@ -1,5 +1,5 @@
 ion-content.menu {
-    --background: #399b24;
+    --background: linear-gradient(to bottom right,#152636,#010409);;
 }
 
 .header {
@@ -8,11 +8,11 @@ ion-content.menu {
 }
 
 ion-menu ion-content * {
-    --background: #399b24;
+    --background: linear-gradient(to bottom right,#152636,#010409);
 }
 
 ion-menu ion-footer * {
-    --background: #399b24;
+    --background:linear-gradient(to bottom right,#152636,#010409);
 }
 
 ion-menu-toggle ion-item * {
