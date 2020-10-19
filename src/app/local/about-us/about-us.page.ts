@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ScreensizeService } from '../../services/screensize.service';
 
 @Component({
   selector: 'app-about-us',
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutUsPage implements OnInit {
 
-  constructor() { }
+  isDesktop: boolean;
+
+  constructor(private screenSizeService: ScreensizeService) {
+    this.screenSizeService.isDesktopView().subscribe(isDesktop => {
+      console.log('Is Desktop Changed:', isDesktop);
+      this.isDesktop = isDesktop;
+    });
+  }
 
   ngOnInit() {
   }

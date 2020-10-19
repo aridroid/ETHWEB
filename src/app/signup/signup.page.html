@@ -1,70 +1,52 @@
 <ion-header [translucent]="true" *ngIf="isBackButton">
-  <ion-toolbar color="dark">
-    <ion-title class="styled1">
-      ETH
-    </ion-title>
-  </ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="start" *ngIf="!isDesktop">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="primary" *ngIf="isDesktop">
+      <ion-title class="styled2" routerLink="/dashboard">HOME</ion-title>
+      <ion-title class="styled2" routerLink="/about-us">ABOUT US</ion-title>
+      <ion-title class="styled2" routerLink="/terms-and-condition">TERMS & CONDITION</ion-title>
+      <ion-title class="styled2" routerLink="/contact-us">CONTACT US</ion-title>
+    </ion-buttons>
+    <ion-title class="styled1">ETH</ion-title>
+  </ion-toolbar> 
 </ion-header>
-
 <ion-content [fullscreen]="true" class="background" *ngIf="isBackButton">
-  <ion-grid>
-    <ion-row class="image-margin-padding">
-      <ion-col size="6" offset="3">
-        <ion-img src="../../assets/image/logo3.jpg" class="image"></ion-img>
+  <ion-grid class="full-width">
+    <ion-row>
+      <ion-col size="12" offset="0" size-md="7" offset-md="0">
+        <div class="dummy-text ion-text-center">Now It's easy for you rent a car</div>
       </ion-col>
-    </ion-row>
-    <form [formGroup]="form" (submit)="onSubmit()">
-      <ion-row>
-        <ion-col size="12" offset="0" size-lg="8" offset-lg="2">
+      <ion-col size="12" offset="0" size-md="5" offset-md="0">
+        <form [formGroup]="form" (submit)="onSubmit()">
           <ion-card class="roundedCard">
+            <ion-item class="margin-bottom">
+              <ion-label><ion-icon name="home-outline" slot="icon-only"></ion-icon></ion-label>
+              <ion-input type="text" placeholder="Company Name" formControlName="companyName"></ion-input>
+            </ion-item>
+            <ion-item class="margin-bottom">
+              <ion-label><ion-icon name="location-outline" slot="icon-only"></ion-icon></ion-label>
+              <ion-textarea placeholder="Address" rows="2" formControlName="address"></ion-textarea>
+            </ion-item>
+            <ion-item  class="margin-bottom">
+              <ion-label><ion-icon name="mail-outline" slot="icon-only"></ion-icon></ion-label>
+              <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="form.get('email').touched && !form.get('email').valid" lines="none">
+              <ion-label color="danger">Invalid Email Address</ion-label>
+            </ion-item>
             <ion-row>
-              <ion-col size="10" offset="1">
-                <ion-item class="margin-bottom">
-                  <ion-label><ion-icon name="home-outline" slot="icon-only"></ion-icon></ion-label>
-                  <ion-input type="text" placeholder="Company Name" formControlName="companyName"></ion-input>
-                </ion-item>
-                <ion-item class="margin-bottom">
-                  <ion-label><ion-icon name="location-outline" slot="icon-only"></ion-icon></ion-label>
-                  <ion-textarea placeholder="Address" rows="2" formControlName="address"></ion-textarea>
-                </ion-item>
-                <ion-item  class="margin-bottom">
-                  <ion-label><ion-icon name="mail-outline" slot="icon-only"></ion-icon></ion-label>
-                  <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
-                </ion-item>
-                <ion-item *ngIf="form.get('email').touched && !form.get('email').valid" lines="none">
-                  <ion-label color="danger">Invalid Email Address</ion-label>
-                </ion-item>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size="10" offset="1" size-md="5" offset-md="1">
+              <ion-col size="12" offset="0">
                 <ion-button type="submit" class="color1" expand="block" shape="round" [disabled]="!form.valid">SignUp</ion-button>
               </ion-col>
-              <ion-col size="10" offset="1" size-md="5" offset-md="0">
+              <ion-col size="12" offset="0">
                 <ion-button type="button" expand="block" class="color1" shape="round" routerLink="/login">Already have Account</ion-button>
               </ion-col>
             </ion-row>
           </ion-card>
-        </ion-col>
-      </ion-row>
-    </form>
-    <ion-row style="margin-top: 30px;">
-      <ion-col size="2">
-
-      </ion-col>
-      <ion-col size="3" class="ion-text-center">
-        <ion-icon name="logo-google" class="icon-yellow"></ion-icon>
-      </ion-col>
-      <ion-col size="2" class="ion-text-center">
-        <ion-icon name="logo-facebook" class="icon-yellow"></ion-icon>
-      </ion-col>
-      <ion-col size="3" class="ion-text-center">
-        <ion-icon name="logo-twitter" class="icon-yellow"></ion-icon>
-      </ion-col>
-      <ion-col size="2">
-
+        </form>
       </ion-col>
     </ion-row>
   </ion-grid>
-  
 </ion-content>

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertController, LoadingController, Platform } from '@ionic/angular';
 import { CarServiveService } from '../carService/car-servive.service';
 import { ScreensizeService } from '../services/screensize.service';
@@ -20,7 +21,8 @@ export class SearchPagePage implements OnInit {
               private http: HttpClient,
               private loadingCtrl: LoadingController,
               private carService: CarServiveService,
-              private alertCtrl: AlertController) {
+              private alertCtrl: AlertController,
+              private router: Router) {
                 this.screenSizeService.isDesktopView().subscribe(isDesktop => {
                   console.log('Is Desktop Changed:', isDesktop);
                   this.isDesktop = isDesktop;
@@ -73,6 +75,11 @@ export class SearchPagePage implements OnInit {
         }
       }]
     }).then(alertEl => alertEl.present());
+  }
+
+  logout() {
+    this.carService.clearLoginData();
+    this.router.navigateByUrl('/login');
   }
 
 }

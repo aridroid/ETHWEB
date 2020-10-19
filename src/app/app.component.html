@@ -6,7 +6,7 @@
       </ion-header>
         <ion-list class="ion-no-padding">
           <ion-menu-toggle>
-            <ion-item style="border-top: 1px solid #fff;" routerLink="/home" detail='false'>
+            <ion-item style="border-top: 1px solid #fff;" routerLink="/dashboard" detail='false'>
               <ion-icon name="home" slot="start"></ion-icon>
               <ion-label>HOME</ion-label>
             </ion-item>
@@ -33,7 +33,7 @@
     </ion-content>
     <ion-footer>
       <ion-menu-toggle>
-        <ion-item  style="border-top: 1px solid #fff; border-bottom: 0px;" (click)="logout()" detail='false'>
+        <ion-item  style="border-top: 1px solid #fff; border-bottom: 0px;cursor: pointer;" (click)="logout()" detail='false'>
           <ion-icon name="log-out" slot="start"></ion-icon>
           <ion-label>LOGOUT</ion-label>
         </ion-item>

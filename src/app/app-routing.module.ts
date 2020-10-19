@@ -33,18 +33,15 @@ const routes: Routes = [
   },
   {
     path: 'about-us',
-    loadChildren: () => import('./local/about-us/about-us.module').then( m => m.AboutUsPageModule),
-    canLoad: [LoginGaurd]
+    loadChildren: () => import('./local/about-us/about-us.module').then( m => m.AboutUsPageModule)
   },
   {
     path: 'contact-us',
-    loadChildren: () => import('./local/contact-us/contact-us.module').then( m => m.ContactUsPageModule),
-    canLoad: [LoginGaurd]
+    loadChildren: () => import('./local/contact-us/contact-us.module').then( m => m.ContactUsPageModule)
   },
   {
     path: 'terms-and-condition',
-    loadChildren: () => import('./local/terms-and-condition/terms-and-condition.module').then( m => m.TermsAndConditionPageModule),
-    canLoad: [LoginGaurd]
+    loadChildren: () => import('./local/terms-and-condition/terms-and-condition.module').then( m => m.TermsAndConditionPageModule)
   },
   {
     path: 'inactive-users',
@@ -55,7 +52,7 @@ const routes: Routes = [
     path: 'search-page',
     loadChildren: () => import('./search-page/search-page.module').then( m => m.SearchPagePageModule),
     canLoad: [LoginGaurd]
-  },
+  }
 ];
 
 @NgModule({

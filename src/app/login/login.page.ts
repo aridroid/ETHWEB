@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { from } from 'rxjs';
+import { ScreensizeService } from '../services/screensize.service';
 import { CarServiveService } from '../carService/car-servive.service';
 import { ForgetPasswordComponent } from '../local/forget-password/forget-password.component';
 
@@ -15,12 +16,19 @@ export class LoginPage implements OnInit {
 
   form: FormGroup;
   isBackButton: boolean;
+  isDesktop: boolean;
 
   constructor(private modalCtrl: ModalController,
               private carService: CarServiveService,
               private alertCtrl: AlertController,
               private loadingCtrl: LoadingController,
-              private router: Router) { }
+              private router: Router,
+              private screenSizeService: ScreensizeService) {
+                  this.screenSizeService.isDesktopView().subscribe(isDesktop => {
+                    console.log('Is Desktop Changed:', isDesktop);
+                    this.isDesktop = isDesktop;
+                  });
+               }
 
   ngOnInit() {
     this.form = new FormGroup({

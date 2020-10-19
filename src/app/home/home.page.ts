@@ -5,7 +5,7 @@ import { AlertController, LoadingController, Platform } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { CarServiveService } from '../carService/car-servive.service';
 import { ScreensizeService } from '../services/screensize.service';
-import { CarData } from '../shared/car-data';
+import { CarData } from '../shared/car-data'; 
 
 
 @Component({
@@ -89,6 +89,12 @@ export class HomePage implements OnInit{
     console.log('User input: ' + event.value);
     console.log(this.searchArray);
   }
+
+  logout() {
+    this.carService.clearLoginData();
+    this.router.navigateByUrl('/login');
+  }
+
 }
 
 //needed when api call will be done
