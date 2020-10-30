@@ -9,7 +9,7 @@ import { CarData } from 'src/app/shared/car-data';
 export class SearchResultPage implements OnInit {
 
   @Input() carData: CarData[];
-  imageUrl = 'http://eqsxerusrangoon.com/';
+  imageUrl = 'http://ethexport.com/';
 
   constructor() { }
 

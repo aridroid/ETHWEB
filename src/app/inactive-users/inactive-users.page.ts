@@ -23,7 +23,7 @@ export class InactiveUsersPage implements OnInit{
   isLoading = true;
   isSearching = false;
   searchArray: CarData[];
-  imageUrl = 'http://eqsxerusrangoon.com/';
+  imageUrl = 'http://ethexport.com/';
 
   constructor(private platform: Platform,
               private screenSizeService: ScreensizeService,

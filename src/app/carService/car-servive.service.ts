@@ -5,6 +5,7 @@ import { take, map, switchMap } from 'rxjs/operators';
 import { from } from 'rxjs';
 import { CarData } from '../shared/car-data';
 import { Plugins } from '@capacitor/core';
+import { environment } from '../../environments/environment';
 const { Storage } = Plugins;
 
 @Injectable({
@@ -18,7 +19,7 @@ export class CarServiveService {
   getSearchData(name: string) {
     let formData = new FormData();
     formData.append('name', name);
-    return this.http.post<{ [key: string]: CarData }>('http://eqsxerusrangoon.com/eth/get-users-by-name.php', formData).pipe(take(1),
+    return this.http.post<{ [key: string]: CarData }>(environment.baseUrl+'get-users-by-name.php', formData).pipe(take(1),
     switchMap(resData => {
       this.carData = [];
       for (const key in resData){
@@ -41,7 +42,7 @@ export class CarServiveService {
   }
 
   getAllData() {
-    return this.http.get<{ [key: string]: CarData }>('http://eqsxerusrangoon.com/eth/get-all-user.php').pipe(take(1),
+    return this.http.get<{ [key: string]: CarData }>(environment.baseUrl+'get-all-user.php').pipe(take(1),
     switchMap(resData => {
       this.carData = [];
       for (const key in resData){
@@ -64,7 +65,7 @@ export class CarServiveService {
   }
 
   getAllActiveData() {
-    return this.http.get<{ [key: string]: CarData }>('http://eqsxerusrangoon.com/eth/get-all-active-user.php').pipe(take(1),
+    return this.http.get<{ [key: string]: CarData }>(environment.baseUrl+'get-all-active-user.php').pipe(take(1),
     switchMap(resData => {
       this.carData = [];
       for (const key in resData){
@@ -87,7 +88,7 @@ export class CarServiveService {
   }
 
   getAllInactiveData() {
-    return this.http.get<{ [key: string]: CarData }>('http://eqsxerusrangoon.com/eth/get-all-inactive-user.php').pipe(take(1),
+    return this.http.get<{ [key: string]: CarData }>(environment.baseUrl+'get-all-inactive-user.php').pipe(take(1),
     switchMap(resData => {
       this.carData = [];
       for (const key in resData){
@@ -110,7 +111,7 @@ export class CarServiveService {
   }
 
   getUser(id: string) {
-    return this.http.get<{ [key: string]: CarData }>(`http://eqsxerusrangoon.com/eth/get-user-by-id.php?id=${id}`).pipe(take(1));
+    return this.http.get<{ [key: string]: CarData }>(environment.baseUrl+`get-user-by-id.php?id=${id}`).pipe(take(1));
   }
 
   signup(formValue: any) {
@@ -119,7 +120,7 @@ export class CarServiveService {
     signUpData.append('address', formValue.address);
     signUpData.append('email', formValue.email);
     console.log(signUpData);
-    return this.http.post('http://eqsxerusrangoon.com/eth/signup.php', signUpData).pipe(take(1));
+    return this.http.post(environment.baseUrl+'signup.php', signUpData).pipe(take(1));
   }
 
   login(formValue: any) {
@@ -128,7 +129,7 @@ export class CarServiveService {
     signUpData.append('username', formValue.username);
     signUpData.append('password', formValue.password);
     console.log(signUpData);
-    return this.http.post('http://eqsxerusrangoon.com/eth/login.php', signUpData).pipe(take(1));
+    return this.http.post(environment.baseUrl+'login.php', signUpData).pipe(take(1));
   }
 
   async setLoginData(userId: string, company_name: string) {
@@ -164,7 +165,7 @@ export class CarServiveService {
     return from(this.getLoginData()).pipe(switchMap((resData: any) => {
       userDetails.append('company_id', resData.companyId);
       userDetails.append('company_name', resData.companyName);
-      return this.http.post('http://eqsxerusrangoon.com/eth/upload-user-details.php', userDetails)
+      return this.http.post(environment.baseUrl+'upload-user-details.php', userDetails)
       .pipe(take(1));
     }));
   }
@@ -172,7 +173,7 @@ export class CarServiveService {
   uploadStatus(id: string) {
     let formData = new FormData();
     formData.append('id', id);
-    return this.http.post(`http://eqsxerusrangoon.com/eth/update-status.php`, formData).pipe(take(1));
+    return this.http.post(environment.baseUrl+`update-status.php`, formData).pipe(take(1));
   }
 
   constructor(private http: HttpClient) { }

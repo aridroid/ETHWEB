@@ -13,7 +13,7 @@ export class UserDetailPage implements OnInit {
 
   id: string;
   userData: CarData;
-  imageUrl = 'http://eqsxerusrangoon.com/';
+  imageUrl = 'http://ethexport.com/';
   companyId = null;
   isLoading = true;
 
