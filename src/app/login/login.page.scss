@@ -1,6 +1,6 @@
 .roundedCard {
-    --ion-background-color: #fff;
-    border-radius: 20px;
+    --ion-background-color: rgba(238, 235, 198, 0.486);
+    border-radius: 40px;
     padding: 80px 20px;
     margin: 10px;
 }
@@ -45,20 +45,50 @@ ion-grid.center {
 }
 
 ion-content.background {
-    --background: url('../../assets/image/header-bg.jpg') no-repeat center center fixed;
+    --background: url('../../assets/image/car_image.jpg') 0 0/100% 100% no-repeat;
 }
 
-.dummy-text {
-    font-size: xx-large;
+.featured-text {
+    font-size: 32px;
     color: #ffffff;
+    text-align: center;
+}
+
+.large {
+    font-size: 72px;
+}
+
+.second-large {
+    font-size: 48px;
 }
 
 .full-width {
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
-// @media(max-width: 992px) {
-//     ion-card.roundedCard {
-//         padding: 20px 0px;
-//     }
-// }
+.text-color {
+    color: #000000;
+    font-size: small;
+    font-weight: bold;
+  }
+
+.circle-input{
+    border-radius: 50px;
+    --background: #000000;
+    color: #fff;
+}
+
+ion-button {
+    color: #000000;
+    font-size: small;
+    font-weight: bold;
+}
+
+@media(min-width: 768px) {
+    .featured-text {
+        text-align: left;
+    }
+    .full-width {
+        margin-top: 100px;
+    }
+}

@@ -70,7 +70,6 @@ export class SignupPage implements OnInit {
         if (resData.status === 'success') {
           this.form.reset();
           loadinEl.dismiss();
-          this.carService.setLoginData(resData.userid, resData.company_name);
           this.alertCtrl.create({
             header: 'Success',
             message: 'The id and the password is sent to your email id, please check and use them to get login',

@@ -1,8 +1,3 @@
-div.image-padding {
-    background: linear-gradient(to bottom right,#152636,#010409);
-    padding: 40px 10px;
-}
-
 ion-icon.large-icons {
     font-size: 48px;
     color: #fbfb04;
@@ -15,7 +10,25 @@ ion-icon.large-icons {
     padding: 30px 10px;
 }
 
-div ion-img {
-    max-width: 800px;
-    margin: 0 auto; 
+ion-col ion-img {
+    margin: 0 auto;
+    padding: 5px;
+    cursor: pointer;
+}
+
+ion-content.background {
+    --background: url('../../assets/image/car_image.jpg') 0 0/100% 100% no-repeat;
+}
+
+.full-width {
+    margin-top: 100px;
+}
+
+@media(min-width: 768px) {
+    ion-col ion-img {
+        padding: 20px;
+    }
+    .full-width {
+        margin-top: 50px;
+    }
 }
