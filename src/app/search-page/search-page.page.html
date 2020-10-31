@@ -27,7 +27,7 @@
     <ion-grid class="ion-no-padding">
       <ion-row>
         <ion-col>
-          <ion-searchbar placeholder="Search by username" #user (ionChange)="onChange(user.value)"></ion-searchbar>
+          <ion-searchbar placeholder="Search by username" #user (ionChange)="onChange(user.value)" style="margin-top: 20px;"></ion-searchbar>
           <ion-button expand="block" class="color1" [disabled]="!user.value" (click)="searchUser(user.value)">Search</ion-button>
         </ion-col>
       </ion-row>
